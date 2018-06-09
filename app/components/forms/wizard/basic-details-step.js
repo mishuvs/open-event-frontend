@@ -11,6 +11,7 @@ import {
 import { countries } from 'open-event-frontend/utils/dictionary/demography';
 import FormMixin from 'open-event-frontend/mixins/form';
 import { orderBy, filter, find } from 'lodash';
+import { protocolLessValidUrlPattern } from 'open-event-frontend/utils/validators';
 
 export default Component.extend(FormMixin, {
 
@@ -63,6 +64,16 @@ export default Component.extend(FormMixin, {
             {
               type   : 'date',
               prompt : this.get('l10n').t('Please give a valid end date')
+            }
+          ]
+        },
+        socialLinks: {
+          identifier : 'social_links',
+          rules      : [
+            {
+              type   : 'regExp',
+              value  : protocolLessValidUrlPattern,
+              prompt : this.l10n.t('Please enter a valid url')
             }
           ]
         },
