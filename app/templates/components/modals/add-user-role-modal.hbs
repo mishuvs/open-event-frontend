@@ -2,7 +2,8 @@
   {{t 'Add Role'}}
 </div>
 <div class="content">
-  <form class="ui {{if isLoading 'loading'}} form" id="add-user-role-form" autocomplete="off" {{action 'addRole' on='submit' preventDefault=true}}>
+  <form class="ui {{if isLoading 'loading'}} form" id="add-user-role-form" autocomplete="off"
+    {{action 'addRole' what_to_send on='submit' preventDefault=true}}>
     <div class="field">
       <label class="required">
         {{t 'User Email'}}

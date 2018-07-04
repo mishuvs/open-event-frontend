@@ -6,9 +6,14 @@ export default ModalBase.extend(FormMixin, {
   autoScrollToErrors : false,
 
   actions: {
-    addRole() {
+    addRole(modelInstance) {
       this.onValid(() => {
+        console.log(modelInstance);
+        const currentInvite = modelInstance.get('data.roleInvites').createRecord({});
+        modelInstance.set('currentInvite', currentInvite);
+        modelInstance.set('isNewInvite', true);
         this.sendAction('updateUserRoles');
+        modelInstance.set('isAddUserRoleModalOpen', false);
       });
     }
   },
