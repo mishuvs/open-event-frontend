@@ -1,5 +1,53 @@
-<div class="ui one column container stackable doubling centered grid">
-  <div class="column">
-    {{forms/login-form}}
+{{#if newUser}}
+  <div class="ui stackable three column doubling centered grid" style="padding: 30px;">
+    <div class="ui stackable column doubling centered grid">
+      <div class="column">
+        <form class="ui large form" autocomplete="off" {{action 'getStarted' on='submit'}}>
+          <div class="ui center aligned segment basic less margin less padding">
+            <h2 class="weight-400">{{t 'Let\'s get started'}}</h2>
+            <h4 class="weight-400">{{t 'Enter your email to sign up or log in.'}}</h4>
+          </div>
+          <div class="ui segments">
+            <div class="ui segment {{if isLoading 'loading' ''}}">
+              {{#if errorMessage}}
+                <div class="ui negative message">
+                  <p>{{errorMessage}}</p>
+                </div>
+              {{/if}}
+              <div class="field">
+                <div class="ui left icon input">
+                  <i class="mail icon"></i>
+                  {{input name='email' placeholder=(t 'Email ID') value=email}}
+                </div>
+              </div>
+
+              <div class="ui center aligned segment basic">
+                <div class="ui vertical buttons">
+                  <button type="submit" class="ui fluid large teal submit button register">
+                    {{t 'Get Started'}}
+                  </button>
+
+                  {{#unless noSocial}}
+                    <button type="button" class="ui facebook button" {{action 'auth' 'facebook'}}>
+                      <i class="facebook icon"></i>
+                      {{t 'Login with Facebook'}}
+                    </button>
+                  {{/unless}}
+                </div>
+              </div>
+            </div>
+            <a class="ui secondary segment center aligned text muted weight-800">
+              {{t 'Enter your email to sign in or sign up'}}
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
+{{else}}
+  <div class="ui one column container stackable doubling centered grid">
+    <div class="column">
+      {{forms/login-form identification=identification action=(action 'toggleStarted')}}
+    </div>
+  </div>
+{{/if}}
