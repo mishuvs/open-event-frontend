@@ -8,5 +8,9 @@
 {{/if}}
 <div class="{{if event.isMapShown 'eight' 'sixteen'}} wide column address">
   <h1>{{t 'Address'}}</h1>
-  <p>{{event.locationName}}</p>
+  {{#if event.locationName}}
+    <p>{{event.locationName}}</p>
+  {{else}}
+    {{t 'Location is not set for this event.'}}
+  {{/if}}
 </div>
